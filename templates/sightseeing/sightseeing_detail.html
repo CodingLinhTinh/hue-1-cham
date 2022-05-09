@@ -1,0 +1,135 @@
+   {% extends 'base.html' %}
+   {% load static %}
+
+   {% block content %}
+    <style>
+    #panorama {
+        width: 100%;
+        height: 500px;
+
+    }
+
+    </style>
+
+   <section class="u-carousel u-slide u-block-079e-1" id="carousel_1f66" data-interval="5000" data-u-ride="carousel">
+      <ol class="u-absolute-hcenter u-carousel-indicators u-block-079e-2">
+        <li data-u-target="#carousel_1f66" class="u-active u-white" data-u-slide-to="0"></li>
+      </ol>
+
+      <div class="u-carousel-inner" role="listbox">
+        <div class="u-section-1-1 u-image u-active u-align-right u-carousel-item u-clearfix">
+
+	          <div class="u-clearfix u-sheet u-sheet-1">
+              <!---
+              <img src="{{ single_sightseeing.images.url }}" class="u-expanded-width u-image u-image-1" data-image-width="407" data-image-height="407">
+              --->
+	            <h1 class="u-color-scheme-u10 u-color-style-multicolor-1 u-text u-title u-text-1">{{ single_sightseeing.sight_name }}</h1>
+	          </div>
+        </div>
+
+      </div>
+
+      <!-- 360 ảnh --->
+      <!---yaw: dịch chuyển mũi tên theo phương ngang --->
+      <div id="panorama"></div>
+      <script>
+      pannellum.viewer('panorama', {   
+          "default": {
+              "firstScene": "scene-1",
+              "author": "Ngoc Quach Bao",
+              "sceneFadeDuration": 1000
+          },
+
+          "scenes": {
+              "scene-1": {
+                  "title": "{{ single_sightseeing.sight_name }} 1",
+                  "hfov": 110,
+                  "pitch": -3,
+                  "yaw": 117,
+                  "type": "equirectangular",
+                  "panorama": "{{ single_sightseeing.images_360_1.url }}",
+                  "hotSpots": [
+                      {
+                          "pitch": -2.1,
+                          "yaw": {{ single_sightseeing.yaw1 }},
+                          "type": "scene",
+                          "text": "{{single_sightseeing.sight_name}} 2",
+                          "sceneId": "scene-2"
+                      }
+                  ]
+              },
+
+              "scene-2": {
+                  "title": "{{single_sightseeing.sight_name}} 2",
+                  "hfov": 110,
+                  "yaw": 5,
+                  "type": "equirectangular",
+                  "panorama": "{{ single_sightseeing.images_360_2.url }}",
+                  "hotSpots": [
+                      {
+                          "pitch": -0.6,
+                          "yaw": {{ single_sightseeing.yaw2 }},
+                          "type": "scene",
+                          "text": "{{single_sightseeing.sight_name}} 3",
+                          "sceneId": "scene-3",
+                          "targetYaw": -23,
+                          "targetPitch": 2
+                      }
+                  ]
+              },
+              "scene-3": {
+                  "title": "{{single_sightseeing.sight_name}} 3",
+                  "hfov": 110,
+                  "yaw": -3,
+                  "type": "equirectangular",
+                  "panorama": "{{ single_sightseeing.images_360_3.url }}",
+                  "hotSpots": [
+                      {
+                          "pitch": -2.1,
+                          "yaw": {{ single_sightseeing.yaw3 }},
+                          "type": "scene",
+                          "text": "{{single_sightseeing.sight_name}} 2",
+                          "sceneId": "scene-2",
+                          "targetYaw": -23,
+                          "targetPitch": 2
+                      }
+                  ]
+              },
+
+          }
+      });
+      </script>
+
+      <!---share lên mạng xã hội-->
+      <!-- Load Facebook SDK for JavaScript -->
+      <script>
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+
+      <!-- Your share button code -->
+      <div class="fb-share-button" 
+      data-href="http://127.0.0.1:7000/sightseeing/<slug:place_slug>/<slug:sightseeing_slug>" 
+      data-layout="button_count">
+      </div>
+    
+
+    </section>
+
+
+
+    <!-- description -->
+    <section class="u-clearfix u-grey-5 u-section-2" id="sec-ebff">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <h3 class="u-text u-text-1">{{ single_sightseeing.sight_name }}</h3>
+        <p class="u-text u-text-2">
+          {{ single_sightseeing.description }} 
+		    </p>
+      </div>
+    </section>
+{% endblock %}

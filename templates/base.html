@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="">
+    
+    <title>Huế 1 chạm</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" media="screen">
+
+    <link rel="stylesheet" href="{% static 'css/360-Tour.css' %}" media="screen">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/main.js' %}" defer=""></script>
+    
+
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <!-- panorama --->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <script type="application/ld+json">{
+  		"@context": "http://schema.org",
+  		"@type": "Organization",
+  		"name": "",
+  		"logo": "{% static 'images/logo.png' %}"
+    }
+  </script>
+
+
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="360 Tour">
+    <meta property="og:title" content="About">
+    <meta property="og:title" content="Contact">
+    <meta property="og:title" content="Home">
+    <meta property="og:title" content="Đại nội">
+
+    <meta property="og:type" content="website">
+
+  </head>
+
+  <body class="u-body u-overlap u-overlap-transparent u-xl-mode">
+{% include 'includes/navbar.html' %}
+
+{% block content %}
+  <!--content-->
+  
+{% endblock %}  
+    
+{% include 'includes/footer.html' %}
